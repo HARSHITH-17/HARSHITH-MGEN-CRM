@@ -1,0 +1,454 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id             Int      @id @default(autoincrement())
+  username       String   @unique
+  passwordHash   String   @map("password_hash")
+  passwordSalt   String   @map("password_salt")
+  createdAt      String   @map("created_at")
+  recoveryEmail  String?  @map("recovery_email")
+  resetCodeHash  String?  @map("reset_code_hash")
+  resetExpiresAt String?  @map("reset_expires_at")
+  resetAttempts  Int      @default(0) @map("reset_attempts")
+
+  @@map("admin")
+}
+
+model AuditLog {
+  id        Int     @id @default(autoincrement())
+  action    String
+  tableName String? @map("table_name")
+  recordId  Int?    @map("record_id")
+  detail    String?
+  createdAt String  @map("created_at")
+
+  @@map("audit_log")
+}
+
+model Customer {
+  id                         Int               @id @default(autoincrement())
+  customerCode               String?           @map("Customer Code")
+  companyName                String?           @map("Company Name")
+  customerType               String?           @map("Customer Type")
+  pan                        String?           @map("PAN")
+  leadSource                 String?           @map("Lead Source")
+  region                     String?           @map("Region")
+  contactName                String?           @map("Contact Name")
+  contactDesignation         String?           @map("Contact Designation")
+  contactDepartment          String?           @map("Contact Department")
+  officeNumber               String?           @map("Office Number")
+  linkedIn                   String?           @map("LinkedIn")
+  country                    String?           @map("Country")
+  website                    String?           @map("Website")
+  secondaryContact           String?           @map("Secondary Contact")
+  secondaryDesignation       String?           @map("Secondary Designation")
+  secondaryPhone             String?           @map("Secondary Phone")
+  secondaryEmail             String?           @map("Secondary Email")
+  productsUsed               String?           @map("Products Used")
+  customerSince              String?           @map("Customer Since")
+  annualBusinessPotential    Float?            @map("Annual Business Potential")
+  existingSoftware           String?           @map("Existing Software")
+  competitorSoftware         String?           @map("Competitor Software")
+  customerCategory           String?           @map("Customer Category")
+  supportContract            String?           @map("Support Contract")
+  renewalDate                String?           @map("Renewal Date")
+  assignedSalesEngineer      String?           @map("Assigned Sales Engineer")
+  assignedTechnicalEngineer  String?           @map("Assigned Technical Engineer")
+  priority                   String?           @map("Priority")
+  customerRating             Float?            @map("Customer Rating")
+  proposalReference          String?           @map("Proposal Reference")
+  poNumber                   String?           @map("PO Number")
+  quotationNumber            String?           @map("Quotation Number")
+  documentLink               String?           @map("Document Link")
+  dateCreated                String?           @map("Date Created")
+  email                      String?           @map("Email")
+  phone                      String?           @map("Phone")
+  industry                   String?           @map("Industry")
+  address                    String?           @map("Address")
+  city                       String?           @map("City")
+  state                      String?           @map("State")
+  pinCode                    String?           @map("PIN Code")
+  gstNumber                  String?           @map("GST Number")
+  tradeName                  String?           @map("Trade Name")
+  gstStatus                  String?           @map("GST Status")
+  gstRegistrationDate        String?           @map("GST Registration Date")
+  assignedEmployee           String?           @map("Assigned Employee")
+  status                     String?           @map("Status")
+  remarks                    String?           @map("Remarks")
+
+  contacts                   CustomerContact[]
+
+  @@map("records_customers")
+}
+
+model CustomerContact {
+  id            Int      @id @default(autoincrement())
+  customerId    Int      @map("customer_id")
+  contactPerson String   @map("contact_person")
+  phone         String?
+  designation   String?
+  email         String?
+  createdAt     String   @map("created_at")
+
+  customer      Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  @@map("customer_contacts")
+}
+
+model SalesPipeline {
+  id                Int      @id @default(autoincrement())
+  leadDate          String?  @map("Lead Date")
+  customer          String?  @map("Customer")
+  industry          String?  @map("Industry")
+  contactPerson     String?  @map("Contact Person")
+  designation       String?  @map("Designation")
+  email             String?  @map("Email")
+  phone             String?  @map("Phone")
+  city              String?  @map("City")
+  state             String?  @map("State")
+  product           String?  @map("Product")
+  licenseType       String?  @map("License Type")
+  expectedSeats     Int?     @map("Expected Seats")
+  leadSource        String?  @map("Lead Source")
+  assignedBy        String?  @map("Assigned By")
+  leadStatus        String?  @map("Lead Status")
+  salesStage        String?  @map("Sales Stage")
+  estimatedValue    Float?   @map("Estimated Value")
+  probability       Float?   @map("Probability %")
+  expectedCloseDate String?  @map("Expected Close Date")
+  assignedEmployee  String?  @map("Assigned Employee")
+  nextFollowUp      String?  @map("Next Follow-up")
+  remarks           String?  @map("Remarks")
+
+  @@map("records_sales_pipeline")
+}
+
+model Support {
+  id               Int      @id @default(autoincrement())
+  dateOpened       String?  @map("Date Opened")
+  customer         String?  @map("Customer")
+  contactPerson    String?  @map("Contact Person")
+  email            String?  @map("Email")
+  phone            String?  @map("Phone")
+  product          String?  @map("Product")
+  dateLogged       String?  @map("Date Logged")
+  activityType     String?  @map("Activity Type")
+  assignedTo       String?  @map("Assigned To")
+  hoursSpent       Float?   @map("Hours Spent")
+  autoRouted       String?  @map("Auto-Routed")
+  resolutionDays   Float?   @map("Resolution Days")
+  efficiency       String?  @map("Efficiency")
+  issue            String?  @map("Issue")
+  priority         String?  @map("Priority")
+  status           String?  @map("Status")
+  assignedEmployee String?  @map("Assigned Employee")
+  dateResolved     String?  @map("Date Resolved")
+  resolution       String?  @map("Resolution")
+  remarks          String?  @map("Remarks")
+
+  @@map("records_support")
+}
+
+model Training {
+  id               Int      @id @default(autoincrement())
+  trainingDate     String?  @map("Training Date")
+  customer         String?  @map("Customer")
+  contactPerson    String?  @map("Contact Person")
+  email            String?  @map("Email")
+  phone            String?  @map("Phone")
+  product          String?  @map("Product")
+  startDate        String?  @map("Start Date")
+  endDate          String?  @map("End Date")
+  mode             String?  @map("Mode")
+  quotationValue   Float?   @map("Quotation Value (INR)")
+  paymentStatus    String?  @map("Payment Status")
+  feedback         String?  @map("Feedback")
+  rating           Float?   @map("Rating")
+  course           String?  @map("Course")
+  trainer          String?  @map("Trainer")
+  participants     Int?     @map("Participants")
+  participantNames String?  @map("Participant Names")
+  hours            Float?   @map("Hours")
+  status           String?  @map("Status")
+  paymentReference String?  @map("Payment Reference")
+  remarks          String?  @map("Remarks")
+
+  @@map("records_training")
+}
+
+model Demo {
+  id                  Int      @id @default(autoincrement())
+  demoDate            String?  @map("Demo Date")
+  customer            String?  @map("Customer")
+  contactPerson       String?  @map("Contact Person")
+  email               String?  @map("Email")
+  phone               String?  @map("Phone")
+  expectedSeats       Int?     @map("Expected Seats")
+  expectedRevenue     Float?   @map("Expected Revenue")
+  actualSeats         Int?     @map("Actual Seats")
+  actualRevenue       Float?   @map("Actual Revenue")
+  demoOwner           String?  @map("Demo Owner")
+  product             String?  @map("Product")
+  demoResult          String?  @map("Demo Result")
+  demoStatus          String?  @map("Demo Status")
+  dealStatus          String?  @map("Deal Status")
+  linkedSaleReference String?  @map("Linked Sale Reference")
+  assignedEmployee    String?  @map("Assigned Employee")
+  nextAction          String?  @map("Next Action")
+  remarks             String?  @map("Remarks")
+
+  @@map("records_demo")
+}
+
+model Services {
+  id                 Int      @id @default(autoincrement())
+  serviceDate        String?  @map("Service Date")
+  customer           String?  @map("Customer")
+  contactPerson      String?  @map("Contact Person")
+  email              String?  @map("Email")
+  phone              String?  @map("Phone")
+  product            String?  @map("Product")
+  serviceRequirement String?  @map("Service Requirement")
+  quotationValue     Float?   @map("Quotation Value (INR)")
+  actionTaken        String?  @map("Action Taken")
+  serviceType        String?  @map("Service Type")
+  assignedEmployee   String?  @map("Assigned Employee")
+  hours              Float?   @map("Hours")
+  status             String?  @map("Status")
+  serviceReference   String?  @map("Service Reference")
+  remarks            String?  @map("Remarks")
+
+  @@map("records_services")
+}
+
+model Learning {
+  id            Int     @id @default(autoincrement())
+  date          String? @map("Date")
+  customer      String? @map("Customer")
+  contactPerson String? @map("Contact Person")
+  email         String? @map("Email")
+  phone         String? @map("Phone")
+  product       String? @map("Product")
+  mode          String? @map("Mode")
+  employee      String? @map("Employee")
+  topic         String? @map("Topic")
+  hours         Float?  @map("Hours")
+  status        String? @map("Status")
+  remarks       String? @map("Remarks")
+
+  @@map("records_learning")
+}
+
+model SeatTracker {
+  id                    Int      @id @default(autoincrement())
+  date                  String?  @map("Date")
+  customer              String?  @map("Customer")
+  contactPerson         String?  @map("Contact Person")
+  email                 String?  @map("Email")
+  phone                 String?  @map("Phone")
+  product               String?  @map("Product")
+  additionalRequirement String?  @map("Additional Requirement")
+  expectedRevenue       Float?   @map("Expected Revenue")
+  actualRevenue         Float?   @map("Actual Revenue")
+  assignedTo            String?  @map("Assigned To")
+  actionTaken           String?  @map("Action Taken")
+  licenseReference      String?  @map("License Reference")
+  seatCount             Int?     @map("Seat Count")
+  startDate             String?  @map("Start Date")
+  expiryDate            String?  @map("Expiry Date")
+  renewalStatus         String?  @map("Renewal Status")
+  remarks               String?  @map("Remarks")
+
+  @@map("records_seat_tracker")
+}
+
+model RevenueTracker {
+  id                   Int      @id @default(autoincrement())
+  transactionDate      String?  @map("Transaction Date")
+  customer             String?  @map("Customer")
+  invoiceNumber        String?  @unique @map("Invoice Number")
+  transactionReference String?  @unique @map("Transaction Reference")
+  productService       String?  @map("Product / Service")
+  revenueType          String?  @map("Revenue Type")
+  amountInr            Float?   @map("Amount INR")
+  paymentStatus        String?  @map("Payment Status")
+  employee             String?  @map("Employee")
+  remarks              String?  @map("Remarks")
+
+  @@map("records_revenue_tracker")
+}
+
+model Events {
+  id                  Int      @id @default(autoincrement())
+  eventDate           String?  @map("Event Date")
+  eventName           String?  @map("Event Name")
+  eventType           String?  @map("Event Type")
+  city                String?  @map("City")
+  state               String?  @map("State")
+  venuePlatform       String?  @map("Venue / Platform")
+  product             String?  @map("Product")
+  topic               String?  @map("Topic")
+  startTime           String?  @map("Start Time")
+  endTime             String?  @map("End Time")
+  durationHours       Float?   @map("Duration Hours")
+  participants        String?  @map("Participants")
+  participantCount    Int?     @map("Participant Count")
+  presentationFile    String?  @map("Presentation File")
+  whatWasPresented    String?  @map("What Was Presented")
+  conclusionsOutcomes String?  @map("Conclusions / Outcomes")
+  customerFeedback    String?  @map("Customer Feedback")
+  nextSteps           String?  @map("Next Steps")
+  nextFollowUpDate    String?  @map("Next Follow-up Date")
+  remarks             String?  @map("Remarks")
+
+  @@map("records_events")
+}
+
+model Webinars {
+  id                       Int      @id @default(autoincrement())
+  webinarDate              String?  @map("Webinar Date")
+  webinarName              String?  @map("Webinar Name")
+  product                  String?  @map("Product")
+  topic                    String?  @map("Topic")
+  startTime                String?  @map("Start Time")
+  endTime                  String?  @map("End Time")
+  durationHours            Float?   @map("Duration Hours")
+  platform                 String?  @map("Platform")
+  presenter                String?  @map("Presenter")
+  participants             String?  @map("Participants")
+  participantCount         Int?     @map("Participant Count")
+  presentationFile         String?  @map("Presentation File")
+  feedback                 String?  @map("Feedback")
+  nextWebinarDate          String?  @map("Next Webinar Date")
+  nextWebinarTopic         String?  @map("Next Webinar Topic")
+  nextWebinarProduct       String?  @map("Next Webinar Product")
+  nextWebinarDurationHours Float?   @map("Next Webinar Duration Hours")
+  nextWebinarRemarks       String?  @map("Next Webinar Remarks")
+  remarks                  String?  @map("Remarks")
+
+  @@map("records_webinars")
+}
+
+model TourManagement {
+  id                     Int      @id @default(autoincrement())
+  employeeName           String?  @map("Employee Name")
+  branch                 String?  @map("Branch")
+  group                  String?  @map("Group")
+  tourStartDate          String?  @map("Tour Start Date")
+  tourStartTime          String?  @map("Tour Start Time")
+  tourEndDate            String?  @map("Tour End Date")
+  tourEndTime            String?  @map("Tour End Time")
+  placesToured           String?  @map("Places Toured")
+  travelExpenses         Float?   @map("Travel Expenses")
+  lodgingRatePerDay      Float?   @map("Lodging Rate Per Day")
+  lodgingDays            Float?   @map("Lodging Days")
+  lodgingBookedByOffice  String?  @map("Lodging Booked By Office")
+  conveyanceExpenses     Float?   @map("Conveyance Expenses")
+  otherExpenses          Float?   @map("Other Expenses")
+  daRatePerDay           Float?   @map("DA Rate Per Day")
+  tourDurationHours      Float?   @map("Tour Duration Hours")
+  daDays                 Float?   @map("DA Days")
+  daAmount               Float?   @map("DA Amount")
+  advanceReceived        Float?   @map("Advance Received")
+  totalExpenses          Float?   @map("Total Expenses")
+  dueToSelf              Float?   @map("Due to Self")
+  refund                 Float?   @map("Refund")
+  activityReport         String?  @map("Activity Report")
+  companyCustomerVisited String?  @map("Company / Customer Visited")
+  contactPerson          String?  @map("Contact Person")
+  productService         String?  @map("Product / Service")
+  salesSupportActivity   String?  @map("Sales / Support Activity")
+  travelStayFeedback     String?  @map("Travel & Stay Feedback")
+  businessVisitFeedback  String?  @map("Business Visit Feedback")
+  authorisedBy           String?  @map("Authorised By")
+  remarks                String?  @map("Remarks")
+
+  @@map("records_tour_management")
+}
+
+model TourExpenses {
+  id                     Int      @id @default(autoincrement())
+  employeeName           String?  @map("Employee Name")
+  branch                 String?  @map("Branch")
+  group                  String?  @map("Group")
+  tourStartDate          String?  @map("Tour Start Date")
+  tourStartTime          String?  @map("Tour Start Time")
+  tourEndDate            String?  @map("Tour End Date")
+  tourEndTime            String?  @map("Tour End Time")
+  placesToured           String?  @map("Places Toured")
+  travelExpenseItems     String?  @map("Travel Expense Items")
+  travelTotal            Float?   @map("Travel Total")
+  lodgingExpenseItems    String?  @map("Lodging Expense Items")
+  lodgingTotal           Float?   @map("Lodging Total")
+  conveyanceExpenseItems String?  @map("Conveyance Expense Items")
+  conveyanceTotal        Float?   @map("Conveyance Total")
+  otherExpenseItems      String?  @map("Other Expense Items")
+  otherTotal             Float?   @map("Other Total")
+  daCity                 String?  @map("DA City")
+  daRatePerDay           Float?   @map("DA Rate Per Day")
+  daDays                 Float?   @map("DA Days")
+  daTotal                Float?   @map("DA Total")
+  totalExpenses          Float?   @map("Total Expenses")
+  advanceReceived        Float?   @map("Advance Received")
+  dueToSelf              Float?   @map("Due to Self")
+  refund                 Float?   @map("Refund")
+  declarationDate        String?  @map("Declaration Date")
+  authorisedBy           String?  @map("Authorised By")
+  remarks                String?  @map("Remarks")
+
+  @@map("records_tour_expenses")
+}
+
+model TourReport {
+  id                    Int      @id @default(autoincrement())
+  linkedTourExpenseId   String?  @map("Linked Tour Expense ID")
+  employeeName          String?  @map("Employee Name")
+  branch                String?  @map("Branch")
+  group                 String?  @map("Group")
+  tourStartDate         String?  @map("Tour Start Date")
+  tourStartTime         String?  @map("Tour Start Time")
+  tourEndDate           String?  @map("Tour End Date")
+  tourEndTime           String?  @map("Tour End Time")
+  placesToured          String?  @map("Places Toured")
+  visitActivityItems    String?  @map("Visit Activity Items")
+  commentsOnTravel      String?  @map("Comments on Travel")
+  businessVisitFeedback String?  @map("Business Visit Feedback")
+  authorisedBy          String?  @map("Authorised By")
+  signature             String?  @map("Signature")
+  remarks               String?  @map("Remarks")
+
+  @@map("records_tour_report")
+}
+
+model EmployeePerformance {
+  id            Int     @id @default(autoincrement())
+  employee      String? @map("Employee")
+  financialYear String? @map("Financial Year")
+  quarter       String? @map("Quarter")
+  metric        String? @map("Metric")
+  target        Float?  @map("Target")
+  actual        Float?  @map("Actual")
+  remarks       String? @map("Remarks")
+
+  @@map("records_employee_performance")
+}
+
+model ProductMaster {
+  id            Int     @id @default(autoincrement())
+  productName   String? @map("Product Name")
+  category      String? @map("Category")
+  standardPrice Float?  @map("Standard Price (INR)")
+  versionPlan   String? @map("Version / Plan")
+  active        String? @map("Active")
+  notes         String? @map("Notes")
+
+  @@map("records_product_master")
+}
+
