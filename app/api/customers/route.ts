@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { SEED_CUSTOMERS } from "@/lib/data-provider";
 import { validateGstin } from "@/lib/calculations";
@@ -61,7 +61,7 @@ export async function POST(req: Request) {
           priority: body.priority || "High",
           status: body.status || "Active",
           renewalDate: body.renewalDate,
-          assignedSalesEngineer: body.assignedSalesEngineer || "Harshith R",
+          assignedSalesEngineer: body.assignedSalesEngineer || "Harshith S",
         },
       });
       return NextResponse.json({ success: true, customer: created, storage: "database" });

@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { SEED_PIPELINE } from "@/lib/data-provider";
 
@@ -44,7 +44,7 @@ export async function POST(req: Request) {
           expectedSeats: Number(body.expectedSeats) || 1,
           expectedCloseDate: body.expectedCloseDate,
           leadDate: body.leadDate || new Date().toISOString().split("T")[0],
-          assignedEmployee: body.assignedEmployee || "Harshith R",
+          assignedEmployee: body.assignedEmployee || "Harshith S",
           remarks: body.remarks,
         },
       });

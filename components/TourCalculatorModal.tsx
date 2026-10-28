@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useMemo } from "react";
 import { calculateTourExpenses, formatINR, TourExpenseResult } from "@/lib/calculations";
@@ -38,7 +38,7 @@ interface TourCalculatorModalProps {
 }
 
 export function TourCalculatorModal({ isOpen, onClose, onSave }: TourCalculatorModalProps) {
-  const [employeeName, setEmployeeName] = useState("Harshith R");
+  const [employeeName, setEmployeeName] = useState("Harshith S");
   const [branch, setBranch] = useState("Bengaluru HQ");
   const [startDate, setStartDate] = useState(new Date().toISOString().split("T")[0]);
   const [startTime, setStartTime] = useState("08:00");

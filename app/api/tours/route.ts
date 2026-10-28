@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { SEED_TOURS } from "@/lib/data-provider";
 import { calculateTourExpenses } from "@/lib/calculations";
@@ -41,7 +41,7 @@ export async function POST(req: Request) {
     });
 
     const recordData = {
-      employeeName: body.employeeName || "Harshith R",
+      employeeName: body.employeeName || "Harshith S",
       branch: body.branch || "Bengaluru HQ",
       group: body.group || "CAM Technical Sales",
       tourStartDate: body.startDate || body.tourStartDate,

@@ -1,4 +1,4 @@
-$port = 3000
+﻿$port = 3000
 $baseUrl = "http://localhost:$port"
 
 Write-Output "Starting Next.js production server on port $port..."
@@ -62,7 +62,7 @@ try {
 
     # 7. Tours GET & POST (Calculation Engine Verification)
     Test-Endpoint "$baseUrl/api/tours" "GET" $null "Get Tour Claims"
-    $newTourJson = '{"employeeName":"Harshith R","startDate":"2026-10-25","startTime":"08:00","endDate":"2026-10-27","endTime":"14:00","placesToured":"Pune MIDC, Chakan","customerVisited":"Precision Toolings & Dies","travelExpenses":4200,"lodgingRatePerDay":1800,"lodgingDays":2,"lodgingBookedByOffice":false,"conveyanceExpenses":900,"otherExpenses":300,"daRatePerDay":750,"advanceReceived":10000}'
+    $newTourJson = '{"employeeName":"Harshith S","startDate":"2026-10-25","startTime":"08:00","endDate":"2026-10-27","endTime":"14:00","placesToured":"Pune MIDC, Chakan","customerVisited":"Precision Toolings & Dies","travelExpenses":4200,"lodgingRatePerDay":1800,"lodgingDays":2,"lodgingBookedByOffice":false,"conveyanceExpenses":900,"otherExpenses":300,"daRatePerDay":750,"advanceReceived":10000}'
     Test-Endpoint "$baseUrl/api/tours" "POST" $newTourJson "Submit Tour Claim (Calculates DA ₹750/day policy & reimbursement due)"
 
     # 8. Authentication: Login

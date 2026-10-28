@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from "react";
 import { validateGstin } from "@/lib/calculations";
@@ -112,7 +112,7 @@ export function CustomerModal({ isOpen, onClose, onSave, initialData }: Customer
         status,
         customerRating: 4.5,
         renewalDate,
-        assignedSalesEngineer: "Harshith R",
+        assignedSalesEngineer: "Harshith S",
         assignedTechnicalEngineer: "Kiran Kumar",
       });
     }

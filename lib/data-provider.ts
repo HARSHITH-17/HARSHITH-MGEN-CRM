@@ -1,4 +1,4 @@
-import prisma from "./prisma";
+﻿import prisma from "./prisma";
 import { APPROVED_CATALOGUE } from "./catalog";
 
 export interface DashboardStats {
@@ -37,7 +37,7 @@ export const SEED_CUSTOMERS = [
     status: "Active",
     customerRating: 4.8,
     renewalDate: "2027-03-31",
-    assignedSalesEngineer: "Harshith R",
+    assignedSalesEngineer: "Harshith S",
     assignedTechnicalEngineer: "Kiran Kumar",
   },
   {
@@ -59,7 +59,7 @@ export const SEED_CUSTOMERS = [
     status: "Active",
     customerRating: 4.5,
     renewalDate: "2026-11-15",
-    assignedSalesEngineer: "Harshith R",
+    assignedSalesEngineer: "Harshith S",
     assignedTechnicalEngineer: "Vikas Deshmukh",
   },
   {
@@ -81,7 +81,7 @@ export const SEED_CUSTOMERS = [
     status: "Active",
     customerRating: 4.9,
     renewalDate: "2027-01-20",
-    assignedSalesEngineer: "Harshith R",
+    assignedSalesEngineer: "Harshith S",
     assignedTechnicalEngineer: "Kiran Kumar",
   },
   {
@@ -103,7 +103,7 @@ export const SEED_CUSTOMERS = [
     status: "Active",
     customerRating: 4.2,
     renewalDate: "2026-12-05",
-    assignedSalesEngineer: "Harshith R",
+    assignedSalesEngineer: "Harshith S",
     assignedTechnicalEngineer: "Vikas Deshmukh",
   },
   {
@@ -125,7 +125,7 @@ export const SEED_CUSTOMERS = [
     status: "Active",
     customerRating: 5.0,
     renewalDate: "2027-05-18",
-    assignedSalesEngineer: "Harshith R",
+    assignedSalesEngineer: "Harshith S",
     assignedTechnicalEngineer: "Kiran Kumar",
   },
 ];
@@ -145,7 +145,7 @@ export const SEED_PIPELINE = [
     expectedSeats: 2,
     leadDate: "2026-10-05",
     expectedCloseDate: "2026-11-20",
-    assignedEmployee: "Harshith R",
+    assignedEmployee: "Harshith S",
     remarks: "Demo completed with outstanding cut-time benchmark results.",
   },
   {
@@ -162,7 +162,7 @@ export const SEED_PIPELINE = [
     expectedSeats: 2,
     leadDate: "2026-09-18",
     expectedCloseDate: "2026-11-10",
-    assignedEmployee: "Harshith R",
+    assignedEmployee: "Harshith S",
     remarks: "Commercial terms and annual support SLA under executive review.",
   },
   {
@@ -179,7 +179,7 @@ export const SEED_PIPELINE = [
     expectedSeats: 3,
     leadDate: "2026-10-12",
     expectedCloseDate: "2026-12-05",
-    assignedEmployee: "Harshith R",
+    assignedEmployee: "Harshith S",
     remarks: "Technical requirement analysis scheduled for next Tuesday.",
   },
   {
@@ -196,7 +196,7 @@ export const SEED_PIPELINE = [
     expectedSeats: 1,
     leadDate: "2026-08-15",
     expectedCloseDate: "2026-10-18",
-    assignedEmployee: "Harshith R",
+    assignedEmployee: "Harshith S",
     remarks: "PO received: PO-2026-881. Invoice generation completed.",
   },
   {
@@ -213,7 +213,7 @@ export const SEED_PIPELINE = [
     expectedSeats: 3,
     leadDate: "2026-10-01",
     expectedCloseDate: "2026-11-30",
-    assignedEmployee: "Harshith R",
+    assignedEmployee: "Harshith S",
     remarks: "Annual renewal plus 3 multi-axis manufacturing extension seats.",
   },
 ];
@@ -274,7 +274,7 @@ export const SEED_SUPPORT = [
 export const SEED_TOURS = [
   {
     id: 1,
-    employeeName: "Harshith R",
+    employeeName: "Harshith S",
     branch: "Bengaluru HQ",
     group: "CAM Technical Sales",
     tourStartDate: "2026-10-18",

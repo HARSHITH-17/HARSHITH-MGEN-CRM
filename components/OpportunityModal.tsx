@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from "react";
 import { formatINR, calculateWeightedValue } from "@/lib/calculations";
@@ -37,7 +37,7 @@ export function OpportunityModal({ isOpen, onClose, onSave, customers }: Opportu
   const [probability, setProbability] = useState<number>(75);
   const [expectedSeats, setExpectedSeats] = useState<number>(2);
   const [expectedCloseDate, setExpectedCloseDate] = useState("2026-12-15");
-  const [assignedEmployee, setAssignedEmployee] = useState("Harshith R");
+  const [assignedEmployee, setAssignedEmployee] = useState("Harshith S");
   const [remarks, setRemarks] = useState("Technical evaluation and machining benchmark proposal.");
 
   if (!isOpen) return null;
@@ -178,7 +178,7 @@ export function OpportunityModal({ isOpen, onClose, onSave, customers }: Opportu
               value={assignedEmployee}
               onChange={(e) => setAssignedEmployee(e.target.value)}
               className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white"
-              placeholder="e.g. Harshith R"
+              placeholder="e.g. Harshith S"
             />
           </div>
 

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
@@ -309,7 +309,7 @@ export default function CRMDashboard() {
                 HR
               </div>
               <div className="hidden lg:block text-left">
-                <p className="text-xs font-semibold text-white leading-none">Harshith R</p>
+                <p className="text-xs font-semibold text-white leading-none">Harshith S</p>
                 <p className="text-[10px] text-slate-400 leading-none mt-0.5">Admin & Sales Lead</p>
               </div>
             </Link>
