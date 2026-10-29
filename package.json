@@ -2,7 +2,8 @@
   "name": "harshith-mgen-crm-web",
   "version": "1.0.0",
   "private": true,
-  "postinstall": "npm run prisma:generate",
+  "scripts": {
+    "postinstall": "npm run prisma:generate",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
